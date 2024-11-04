@@ -1,0 +1,11 @@
+services:
+  sample-api:
+    image: ${DOCKER_REGISTRY-}sample-webapi
+    environment:
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+    ports:
+      - "80"
+      - "443"
+    build:
+      context: .
+      dockerfile: src/Blueshift.Sample.WebAPI/Dockerfile

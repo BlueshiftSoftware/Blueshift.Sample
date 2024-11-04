@@ -1,0 +1,20 @@
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1
+ARG BUILD_CONFIGURATION=Debug
+ENV ASPNETCORE_ENVIRONMENT=Development
+ENV ASPNETCORE_URLS=http://+:80
+ENV DOTNET_USE_POLLING_FILE_WATCHER=true
+EXPOSE 80
+
+WORKDIR /src
+COPY ["src/Blueshift.Sample.Adapters.Repositories.InMemoryCache/Blueshift.Sample.Adapters.Repositories.InMemoryCache.csproj", "src/Blueshift.Sample.Adapters.Repositories.InMemoryCache/"]
+COPY ["src/Blueshift.Sample.WebAPI/Blueshift.Sample.WebAPI.csproj", "src/Blueshift.Sample.WebAPI/"]
+COPY ["src/Blueshift.Sample/Blueshift.Sample.csproj", "src/Blueshift.Sample/"]
+
+RUN dotnet restore "src/Blueshift.Sample.WebAPI/Blueshift.Sample.WebAPI.csproj"
+COPY . .
+WORKDIR "/src/src/Blueshift.Sample.WebAPI"
+RUN dotnet build --no-restore "Blueshift.Sample.WebAPI.csproj" -c $BUILD_CONFIGURATION
+
+RUN echo "exec dotnet run --no-build --no-launch-profile -c $BUILD_CONFIGURATION --" > /entrypoint.sh
+
+ENTRYPOINT ["/bin/bash", "/entrypoint.sh"]

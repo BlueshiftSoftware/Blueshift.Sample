@@ -1,0 +1,25 @@
+services:
+  sample-api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__SampleSqlServerDb=Server=sample-db;Database=Sample;ConnectRetryCount=0;TrustServerCertificate=True;User Id=SA;Password=S@mpl3-D3v-DB-PWD
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ${APPDATA}/ASP.NET/Https:/root/.aspnet/https:ro
+    ports:
+      - 51367:80
+      - 51368:443
+    depends_on:
+      sample-db:
+        condition: service_started
+        restart: true
+  sample-db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=S@mpl3-D3v-DB-PWD
+    volumes:
+      - ./database/sql/data/:/var/opt/mssql/data  #persist data between runs
+      - ./database/sql/log/:/var/opt/mssql/log    #capture logs

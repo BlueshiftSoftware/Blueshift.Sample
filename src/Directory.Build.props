@@ -1,0 +1,16 @@
+﻿<Project>
+
+  <Import Project="../Directory.Build.props"/>
+  
+  <PropertyGroup>
+    <NeutralLanguage>en-us</NeutralLanguage>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <PackageTags>$(PackageTags);Sample</PackageTags>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  
+  <ItemGroup Label="Shared Code Analyzers">
+    <!--<PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" />-->
+  </ItemGroup>
+
+</Project>

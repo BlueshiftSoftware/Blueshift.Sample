@@ -1,0 +1,8 @@
+﻿<Project>
+
+  <Import Project="../Directory.Build.targets"/>
+
+  <!--<Sdk Name="Blueshift.MSBuildSdks.CI" />
+  <Sdk Name="Blueshift.MSBuildSdks.Contracts" />-->
+
+</Project>

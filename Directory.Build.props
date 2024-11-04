@@ -1,0 +1,11 @@
+﻿<Project>
+
+  <Import Project="../Directory.Build.props" Condition="Exists('../Directory.Build.props')" />
+
+  <PropertyGroup>
+    <Framework>net8.0</Framework>
+
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+</Project>

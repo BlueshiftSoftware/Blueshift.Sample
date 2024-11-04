@@ -1,0 +1,37 @@
+{
+  "name": "sample-integration-tests",
+  "version": "0.0.0",
+  "description": "sample-integration-tests",
+  "type": "module",
+  "author": {
+    "name": ""
+  },
+  "scripts": {
+    "build": "tsc --build",
+    "clean": "tsc --build --clean",
+    "test": "mocha tests/**/*.test.ts"
+  },
+  "devDependencies": {
+    "@types/chai": "^5.0.1",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^14.14.7",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "axios": "^1.7.7",
+    "chai": "^5.1.2",
+    "eslint": "^8.57.1",
+    "mocha": "^10.8.2",
+    "tsx": "^4.19.2",
+    "typescript": "^4.5.2"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "plugins": [
+      "@typescript-eslint"
+    ]
+  }
+}

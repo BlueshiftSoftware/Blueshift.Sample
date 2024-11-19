@@ -1,6 +1,8 @@
 ﻿using Blueshift.Sample.Adapters.Repositories.SqlServer;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -14,8 +16,8 @@ public static class Program
 
         using (var scope = host.Services.CreateScope())
         {
-            var db = scope.ServiceProvider.GetRequiredService<SampleContext>();
-            db.Database.Migrate();
+            var dbContext = scope.ServiceProvider.GetRequiredService<SampleContext>();
+            dbContext.Database.Migrate();
         }
 
         host.Run();

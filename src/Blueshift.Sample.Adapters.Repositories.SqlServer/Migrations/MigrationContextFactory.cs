@@ -18,7 +18,9 @@ public class MigrationContextFactory : IDesignTimeDbContextFactory<SampleContext
     public SampleContext CreateDbContext(string[] args)
     {
         var optionsBuilder = new DbContextOptionsBuilder<SampleContext>();
-        optionsBuilder.UseSqlServer(@"Server=.\;Database=Sample;Trusted_Connection=True;", opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds));
+        string connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__SampleSqlServerDb")
+            ?? "Server=.\\;Database=Sample;Trusted_Connection=True;";
+        optionsBuilder.UseSqlServer(connectionString, opts => opts.CommandTimeout((int)TimeSpan.FromMinutes(10).TotalSeconds));
         return new SampleContext(optionsBuilder.Options);
     }
 }
